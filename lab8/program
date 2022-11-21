@@ -1,1 +1,15 @@
+//1
+library(datasets)
+head(iris, n=100)
+
+//2
+str(iris)
+
+//3
+plot(iris$Sepal.Length,iris$Sepal.Width)
+
+//4
+plot(iris$Petal.Length, iris$Petal.Width)
+
+//5
 
