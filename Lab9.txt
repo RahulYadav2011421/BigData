@@ -1,0 +1,51 @@
+library(MASS)
+options(scipen = 4)
+View(Boston)
+set.seed(1)
+train <- sample(1:nrow(Boston), nrow(Boston)/2)
+install.packages("tree")
+library("tree")
+tree.boston <- tree(medv ~ . ,Boston,subset=train)
+summary(tree.boston)
+
+# Run CV
+cv.boston <- cv.tree(tree.boston)
+plot(cv.boston$size,cv.boston$dev,type='b')
+
+#Prune tree
+prune.boston <- prune.tree(tree.boston,best=5)
+plot(prune.boston)
+text(prune.boston,pretty=0)
+
+
+TEXT:///////////////////////////////
+
+# http://lib.stat.cmu.edu/datasets/boston
+library(MASS)    # For Boston data
+options(scipen = 4)  # Suppresses scientific notation
+
+View(Boston) 
+
+set.seed(1)
+train <- sample(1:nrow(Boston), nrow(Boston)/2)
+tree.boston <- tree(medv ~ . ,Boston,subset=train)
+summary(tree.boston)
+
+1) Describe the nature of data set (use relevant plots to show the relationship)
+2) From the tree, 
+a) What is the first variable that is split on? Where is the split for this variable? 
+b) Look at the terminal nodes (leaves) in the tree. What do the numbers appearing in the leaves of the tree mean?
+c) What can you infer from the tree?
+
+# Run CV to find best level at which to prune
+cv.boston <- cv.tree(tree.boston)
+# Construct a plot (dev = MSE on y-axis)
+plot(cv.boston$size,cv.boston$dev,type='b')
+
+3) What can you infer from this plot? The y-axis on the CV error plot is MSE. dev stands for “deviance”,
+
+4) # Prune the tree, display pruned tree
+prune.boston <- prune.tree(tree.boston,best=5)
+plot(prune.boston)
+text(prune.boston,pretty=0)
+d) How is this tree different from previous tree? Does it help to make better inferences?
