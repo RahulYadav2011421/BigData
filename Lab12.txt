@@ -1,0 +1,57 @@
+library(ggplot2)
+set.seed(2)
+x <- matrix(rnorm(50*2), ncol=2)
+qplot(x = x[,1], y = x[,2])
+#mean(1,-1)
+x[1:25, 1] <- x[1:25, 1] + 1
+x[1:25, 2] <- x[1:25, 2] – 1
+#mean(4,-4)
+x[1:25, 1] <- x[1:25, 1] + 1
+x[1:25, 2] <- x[1:25, 2] – 1
+#plot data in 2 dimensions
+class.lbl <- as.factor(c(rep(1, 25), rep(2, 25)))
+qplot(x = x[,1], y = x[,2], colour = class.lbl, size = I(3)) + theme_bw()
+km.out <- kmeans(x, 2, nstart=20)
+table(km.out$cluster, class.lbl)
+plot(x, col=(km.out$cluster+1), main="K-Means Clustering Results with K=3", xlab="", ylab="", pch=20, cex=2)
+
+
+
+TEXT////////////////////////////////////////////////
+
+Today’s exercise is about clustering. We will learn and practice more about K-means clustering
+library(ggplot2)
+1)	# Generate random data
+set.seed(2)
+# generate data
+x <- matrix(rnorm(50*2), ncol=2)
+
+qplot(x = x[,1], y = x[,2])
+a)	What is K-means clustering? Can clustering be done with above data? Explain
+
+2)	# shift the first 25 points to have mean (1, -1) instead of (0, 0)
+x[1:25, 1] <- x[1:25, 1] + 1
+x[1:25, 2] <- x[1:25, 2] – 1
+Perform 
+             qplot(x = x[,1], y = x[,2])
+b)	Is the data better for clustering exercise? Explain
+
+3)	# shift the first 25 points to have mean (4, -4) instead of (0, 0)
+x[1:25, 1] <- x[1:25, 1] + 4
+x[1:25, 2] < -- x[1:25, 2] – 4
+
+#plot data in 2 dimensions
+class.lbl <- as.factor(c(rep(1, 25), rep(2, 25)))
+qplot(x = x[,1], y = x[,2], colour = class.lbl, size = I(3)) + theme_bw()
+
+4)	km.out <- kmeans(x, 2, nstart=20) # perform clustering with nstart = 20 with 2 clusters
+table(km.out$cluster, class.lbl)
+c)	What can you infer from the table result?
+
+5)	Perform clustering with cluster size of 3
+plot(x, col=(km.out$cluster+1), main="K-Means Clustering Results with K=3", xlab="", ylab="", pch=20, cex=2)
+d)	Comment on the clustering
+6)	Perform the experiment with cluster size 5, 8, 12
+e)	State your observations on higher cluster sizes
+7)	Vary the nstart value (1, 5, 20) at a certain cluster size. 
+f)	What impact does nstart have on the clusters formed?
