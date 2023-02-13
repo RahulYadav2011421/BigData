@@ -1,0 +1,22 @@
+Lab 14, January 03, 2023
+
+Part I (Data Visualization)
+Today’s exercise is about visualizing data and developing a model for the given data set.
+Use diabetes.csv dataset at https://github.com/plotly/datasets/blob/master/diabetes.csv
+
+1.	Determine the structure of the data
+a.	# of categorical, numeric variables
+b.	Distribution of each features, outliers present etc
+c.	Is there a target variable
+
+2.	Determine the relation of variable against each other. Make inferences
+3.	Perform correlation against each other  (install corrplot)
+numeric.var <- sapply(diabetes, is.numeric)
+corr.matrix <- cor(diabetes[,numeric.var])
+corrplot(corr.matrix, main="\n\nCorrelation Plot for Numerical Variables", order = "hclust", tl.col = "black", tl.srt=45, tl.cex=0.8, cl.cex=0.8)
+box(which = "outer", lty = "solid")
+Here, sapply() function will return the columns from the diabetes dataset which have numeric values. cor() function will produce correlation matrix of all those numeric columns returned by sapply(). corrplot() provides a visual representation of correlation matrix that supports automatic variable reordering to help detect hidden patterns among variables.
+Part II (Data Model)
+Apply a learning method to model the data? Explian clearly choice of you model? How many features will you keep?
+
+Test the accuracy of your model.
