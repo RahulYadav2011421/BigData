@@ -1,0 +1,139 @@
+setwd("E:/VII Sem/Big Data Lab/DataAnalyticsLab/Lab3")
+df=read.csv("testfile - Lab 2_1_10_2021.csv")
+df$total_marks = rowSums(df[, (3:7)])
+df$total_marks
+
+# median
+df$subject1_median = median(df$Subject.1.Marks)
+df$subject1_median
+
+#mean(Average)
+df$subject1_mean = mean(df$Subject.1.Marks)
+df$subject1_mean
+
+#mean(Average) of total marks
+mean(df$total_marks)
+
+
+plot(x, df$Subject_Average, type = "b", xlab = "Student", ylab = "Score", pch = 19, col = "Red", lwd= 2.0)
+legend("topleft", legend=c("Subject Average Per Student"), fill = c("Red"))
+
+df$StudentScore_Median = apply(df[,3:7],1, median, na.rm = TRUE)
+lines(x, df$StudentScore_Median, type = "b", pch = 21, col = "Blue", lwd = 2.0)
+
+
+
+#Find List Of Students Who Have Scored More Than 90 In Total Marks
+df[df$total_marks > 90, "Name" ]
+
+
+#Convert Date of Birth Column to Date Class
+df$`Date of Birth` <- as.Date(df$`Date of Birth`, format = "%d-%m-%Y")
+df[df$`Active Student` == "TRUE" & df$`Date of Birth` > as.Date("1990-07-01"), c("Name", "Date of Birth")]
+
+
+//////////////////////////////////////////////////////////////////utsav
+1) df <- read.csv("/home/arjunchauhan/Code/R-Programming/testfile3.csv")
+df
+
+2) dataF <- data.frame(sub1 = df[,3],
+sub2 = df[,4],
+sub3 = df[,5],
+sub4 = df[,6],
+sub5 = df[,7]
+)
+total <-rowSums(dataF)
+df$TotalMarks <- total
+df
+
+3) library(matrixStats)
+avg_Marks <- rowMeans(dataF)
+df$AvgMarks <- avg_Marks
+row_median = rowMedians(as.matrix(dataF))
+df$StudentScore_Median = row_median
+avg_TotalMarks <- mean(df[,10])
+avg_TotalMarks
+
+4) x <- c(1:10)
+plot(x, df$AvgMarks, type = "b", xlab = "Student", ylab = "Score", pch = 19, col = "Red"
+, lwd= 2.0)
+legend("topleft", legend=c("Subject Average Per Student"), fill = c("Red"))
+
+5) df$StudentScore_Median = apply(df[,3:7],1, median, na.rm = TRUE)
+y <- sort(df$StudentScore_Median, decreasing = FALSE)
+plot(x, y, type = "b", pch = 21, col = "Blue", lwd = 2.0)
+
+6) df[which(df$AvgMarks > 90), ]
+
+7) TempDf = subset(df, df$Date.of.Birth > "1-07-1990")
+TempDf
+
+8) IQR(df$TotalMarks)
+
+9) sem3 <- subset(df , df$Semester == 3)
+sem5 <- subset(df, df$Semester ==5)
+
+10) avgMarks3 <- mean(sem3$AvgMarks)
+avgMarks5 <- mean(sem5$AvgMarks)
+avgMarks3
+
+11) avgMarks5
+
+12) write.csv(df,"/home/arjunchauhan/Code/R-Programming/testfile.csv", row.names = FALSE)
+df
+
+13) 
+
+
+
+
+
+
+
+TEXT//////////////////////////////////////
+
+
+A) Use Readfile And Dataframe To Store Contents In R Data Structure
+#Use A Readfile and Dataframe To Store Contents
+setwd("C:/.............") 
+df = read.csv("testfile.csv") 
+
+B) Compute The Total Subject Marks For Each Students (Subject 1 + 2+ 3 + 4+ 5)
+#The Total Subject Marks For Each Students
+
+Hint: 
+df$total_marks = rowSums(df[ , c(a:b)],.....)   , set a and b 
+
+C) Find The Median and Average Of Subject 1, Subject 2, Subject 3, Subject 4, Subject 5 for each students
+
+Use Mean function
+
+D) Find The Average Of The Total Marks 
+
+E) Plot A Line Plot Of Average Marks For Each Student
+plot(x, df$Subject_Average, type = "b", xlab = "Student", ylab = "Score", pch = 19, col = "Red", lwd= 2.0)
+legend("topleft", legend=c("Subject Average Per Student"), fill = c("Red"))
+
+F) Add Median Of Subject Score For Each Student To The Line Plot.
+#Add Median Of Subject Score For Each Student To The Line Plot
+df$StudentScore_Median = apply(df[,3:7],1, median, na.rm = TRUE)
+lines(x, df$StudentScore_Median, type = "b", pch = 21, col = "Blue", lwd = 2.0)
+
+G) Find List Of Students Who Have Scored More Than 90 In Total Marks
+#List Of Students Who Have Scored More Than 90 in Average
+df[which(df$Subject_Average > 90), ]
+
+H) Find List Of Students With DOB Greater Than 1-07-1990 And Status 'Active'
+#List Of Students With DOB Greater Than 1-07-1990 and Status 'Active'
+TempDf = subset(df, df$Date.of.Birth > ".....................)
+
+I) Find Interquartile Deviation For Total Marks Column (Use Quartile Function)
+#Interquartile Deviation For Total Marks Column
+print(summary(df$total_marks))
+print(paste("Interquartile Deviation of Total Marks=", IQR(df$................)))
+
+J) Compare the performance of semester 3 students vs Semester 5 students? Who has done well? Explain the metrics who have used to make the inference.
+
+K) Put The Data Frame With Additional Column Back To Excel And Save.
+#Put The Data Frame With Additional Column Back To Excel and Save
+write.csv(df,"B:/WAREHOUSE/IMP/7th SEM/BDAL/Pgm2/output.csv", row.names = FALSE)
