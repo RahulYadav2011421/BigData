@@ -1,0 +1,26 @@
+months<-seq(1,12)
+months
+df=read.csv("/Users/utsavpathak/Downloads/LAB10.csv")
+plot(months,df[1,2:13],type="l",col="red")
+lines(months,df[2,2:13],types="l",col="blue")
+lines(months,df[3,2:13],types="l",col="blue")
+lines(months,df[4,2:13],types="l",col="blue")
+lines(months,df[5,2:13],types="l",col="blue")
+
+
+text////////////////////////////////////////////
+
+Given below is the data regarding the electrical consumption of an organization, It contains the monthly electrical consumption and the annual average for various years.
+Year	Jan	Feb	Mar	Apr	May	Jun	Jul	Aug	Sep	Oct	Nov	Dec	Avg
+1979	23	23	2	43	24	25	26	26	26	26	25	26	25
+1980	26	27	28	28	28	30	31	31	31	30	30	30	29
+1981	1	32	32	32	101	34	35	36	36	34	34	34	34
+1984	39	38	39	39	39	41	42	43	40	39	381	38	40
+1985	38	39	39	39	39	41	41	41	00	40	39	39	45
+
+Write R code to further analyse the data
+1)	Plot the variations across the years. Is the consumption pattern comparable across the years?
+2)	Are there outliers in input data? Which years have outliers? Why you say so?
+3)	Remove outliers using a strategy such that any value beyond the median value from median value in a year is removed (remove median value < or > from the median. For example if median is 10, remove values that deviate more than or less than 10 from median of 10. Take value only between 0 and 20 in this case)
+4)	Perform 1 again and comment on the pattern
+
